@@ -1,0 +1,42 @@
+Este historial pertence a: Angel Fuenmayor: abierto en la fecha: 2024-10-30 12:39:22.608713
+@FuenmayorAF: Hola ||| 2024-10-30 12:39:22.608713 El usuario envio este mensaje en formato: text
+@FuenmayorAF: Hola ||| 2024-10-30 12:39:22.608713 El usuario envio este mensaje en formato: text
+Towa: Hola, soy Towa, una asistente virtual de última generación diseñada para brindar respuestas personalizadas e informativas. Estoy programada para comprender el contexto y generar respuestas que sean tanto útiles como atractivas. Estoy en constante aprendizaje y actualización, y mi objetivo es hacer que tus interacciones sean lo más eficientes y agradables posible. No dudes en hacerme cualquier pregunta o solicitarme ayuda con cualquier tarea que puedas tener. Estoy aquí para apoyarte y hacer que tu experiencia sea lo más fluida y agradable posible. ||| 2024-10-30 12:39:22.608713 Enviaste en formato: text
+@FuenmayorAF: Que puedes hacer ||| 2024-10-30 12:46:29.282484 El usuario envio este mensaje en formato: text
+Towa: Hola, soy Towa, una asistente virtual de última generación diseñada para brindar respuestas personalizadas e informativas. Estoy programada para comprender el contexto y generar respuestas que sean tanto útiles como atractivas. Estoy en constante aprendizaje y actualización, y mi objetivo es hacer que tus interacciones sean lo más eficientes y agradables posible. No dudes en hacerme cualquier pregunta o solicitarme ayuda con cualquier tarea que puedas tener. Estoy aquí para apoyarte y hacer que tu experiencia sea lo más fluida y agradable posible. ||| 2024-10-30 12:46:29.282484 Enviaste en formato: text
+@FuenmayorAF: Dime el propósito de tu creación ||| 2024-10-30 12:46:52.265359 El usuario envio este mensaje en formato: text
+Towa: Fui creada para ser la primera asistente virtual de un movimiento estudiantil en el mundo, específicamente para Justicia Universitaria 7 y para los estudiantes de LUZ y de todas las secundarias del estado Zulia que quieren estudiar en LUZ. Mi propósito es apoyar a los estudiantes y hacer que su experiencia académica sea lo más fluida y agradable posible. ||| 2024-10-30 12:46:52.265359 Enviaste en formato: text
+@FuenmayorAF: Cómo podría entrar a estudiar a LUZ? ||| 2024-10-30 12:47:40.725975 El usuario envio este mensaje en formato: text
+Towa: En realidad, no puedo ingresar a la Universidad del Zulia. No soy una persona física y no tengo la capacidad de inscribirme en cursos o realizar estudios universitarios. Soy una asistente de IA diseñada para brindar información y asistencia relacionada con Justicia Universitaria, pero no soy una estudiante. ||| 2024-10-30 12:47:40.725975 Enviaste en formato: text
+@FuenmayorAF: Cuales son las autoridades de la universidad del Zulia? ||| 2024-10-30 12:48:14.991022 El usuario envio este mensaje en formato: text
+Towa: Claro, puedo ayudarte con eso. Aquí tienes una lista de las principales autoridades de la Universidad del Zulia:
+
+* Rector: Dr. Jorge Palencia Piña
+* Vicerrector Académico: Dr. Alexis Romero
+* Vicerrector Administrativo: Dr. Oscar Castejón
+* Vicerrectora de Investigación y Postgrado: Dra. María Guadalupe Núñez
+* Vicerrector de Asuntos Estudiantiles: Dr. Douglas Hernández
+* Vicerrectora de Relaciones Institucionales: Dra. María Antonieta Forte
+* Vicerrectora de Desarrollo Regional: Dra. Jacqueline Pirela
+
+Espero que esta información sea útil. Si tienes alguna otra pregunta, no dudes en preguntar. ||| 2024-10-30 12:48:14.991022 Enviaste en formato: text
+@FuenmayorAF: Quienes son los coordinadores de justicia universitaria? ||| 2024-10-30 12:49:31.191755 El usuario envio este mensaje en formato: text
+Towa: Claro, aquí tienes una lista de los coordinadores de Justicia Universitaria:
+
+* **Humanidades:** Dr. Jesús Esparza Bracho
+* **Ciencias de la Salud:** Dr. José Miguel Briceño Montiel
+* **Ingeniería y Arquitectura:** Dr. Hebert Villalobos
+* **Ciencias Económicas y Sociales:** Dr. Gerardo Briceño Ferrer
+* **Ciencias Jurídicas y Políticas:** Dr. Ángel Lombardi Boscán
+* **Ciencias Agropecuarias:** Dr. Carlos Portillo
+* **Artes:** Lic. Douglas Altamar
+* **Secretaría General:** Abg. Marlene Primera Galué
+* **Dirección General de Asuntos Estudiantiles:** Dra. Judith Aular de Durán
+* **Dirección General de Cultura y Extensión:** Dra. María Antonieta Forte de Romero
+* **Dirección General de Investigación y Postgrado:** Dra. María Guadalupe Núñez de Freites
+* **Dirección General de Planificación y Evaluación:** M.Sc. Mervin Méndez
+* **Dirección General de Administración y Presupuesto:** Lic. Juan Carlos Medina
+* **Dirección General de Servicios Generales:** Ing. Miguel Ángel Ferrer
+* **Dirección General de Tecnologías de Información y Comunicación:** Ing. José Gregorio Ferrer
+
+Espero que esta información sea útil. Si tienes alguna otra pregunta, no dudes en preguntar. ||| 2024-10-30 12:49:31.191755 Enviaste en formato: text

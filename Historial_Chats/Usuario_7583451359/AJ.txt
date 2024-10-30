@@ -1,0 +1,19 @@
+Este historial pertence a: AJ: abierto en la fecha: 2024-10-30 12:43:06.054962
+AJ: Hola ||| 2024-10-30 12:43:06.054962 El usuario envio este mensaje en formato: text
+AJ: Hola ||| 2024-10-30 12:43:06.054962 El usuario envio este mensaje en formato: text
+Towa: Hola, soy Justic-IA, una asistente virtual diseñada para ayudar a los estudiantes universitarios y futuros estudiantes de la Universidad del Zulia (LUZ). Estoy aquí para brindarles información, apoyo y orientación académica. No dudes en hacerme cualquier pregunta que tengas sobre la vida universitaria, los estudios o cualquier otra cosa que te preocupe. ||| 2024-10-30 12:43:06.054962 Enviaste en formato: text
+AJ: Dónde queda la facultad de humanidades? ||| 2024-10-30 12:43:54.750592 El usuario envio este mensaje en formato: text
+Towa: ¡De acuerdo! Déjame ayudarte con eso. La Facultad de Humanidades y Educación de la Universidad del Zulia (LUZ) tiene su sede principal en el Complejo Universitario Rafael Urdaneta (CURA) en el Sector Grano de Oro, al norte de la ciudad de Maracaibo, estado Zulia, Venezuela. ||| 2024-10-30 12:43:54.750592 Enviaste en formato: text
+AJ: Cuando son las inscripciones? ||| 2024-10-30 12:44:22.679601 El usuario envio este mensaje en formato: text
+Towa: ¡Genial! Déjame ayudarte con eso. El período de inscripciones para la Universidad del Zulia (LUZ) generalmente se lleva a cabo durante los meses de julio y agosto de cada año. Te recomiendo estar atento a los anuncios oficiales de la LUZ o visitar su sitio web para obtener las fechas exactas y los requisitos específicos para el próximo período de inscripciones. ||| 2024-10-30 12:44:22.679601 Enviaste en formato: text
+AJ: Cómo se llama la rectora? ||| 2024-10-30 12:44:51.078108 El usuario envio este mensaje en formato: text
+Towa: Hola, actualmente la rectora de la Universidad del Zulia (LUZ) es la Dra. Doris Loaiza. Fue electa en diciembre de 2022 y es la primera mujer en ocupar este cargo en la historia de la LUZ. ||| 2024-10-30 12:44:51.078108 Enviaste en formato: text
+AJ: Cómo se llaman las autoridades de LUZ? ||| 2024-10-30 12:45:30.098976 El usuario envio este mensaje en formato: text
+Towa: Las autoridades de la Universidad del Zulia (LUZ) son:
+
+* Rectora: Dra. Doris Loaiza
+* Vicerrector Académico: Dr. Omar León
+* Vicerrector Administrativo: Dr. Jaime Urdaneta
+* Vicerrectora de Investigación y Postgrado: Dra. Mery Canelón
+* Secretario: Dr. Leonardo Atencio
+* Consultor Jurídico: Dr. Jhonny Castellano ||| 2024-10-30 12:45:30.098976 Enviaste en formato: text

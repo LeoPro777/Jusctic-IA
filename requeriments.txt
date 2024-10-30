@@ -1,0 +1,15 @@
+google-ai-generativelanguage==0.6.6
+google-api-core==2.19.1
+google-api-python-client==2.137.0
+google-auth==2.32.0
+google-auth-httplib2==0.2.0
+google-generativeai==0.7.2
+googleapis-common-protos==1.63.2
+gTTS==2.5.1
+mysql-connector==2.2.9
+openai-whisper==20231117
+pyTelegramBotAPI==4.15.2
+python-dotenv==1.0.1
+python-telegram-bot==20.4
+telegram==0.0.1
+telegram_menu==2.1.3
