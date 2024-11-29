@@ -83,7 +83,7 @@ def main_process(update: Update, context: ContextTypes.DEFAULT_TYPE, mode, callb
         try: 
             print(f"\n{user_full_name}: {content}\n")
             context_chat, new_context = chat_history_register_to_user(chat_id, user_id, content, message_type, 1, day)
-            response_types = define_response_types(content, context_chat)
+            response_types = define_response_types(content, context_chat)[0]
             if new_context == "":
                 print("Opcion 1")
                 response = ia_interaction(1, content, context_chat, JUSTICIA, response_types)
@@ -140,21 +140,22 @@ def define_response_types(content, context: None):
 
     modelo = genai.GenerativeModel("gemini-pro")
     genai.configure(api_key=load_variables()[1])
-    opciones = ["text", "audio"]
-    pront = f"Compórtate como una analizadora de contexto cuya función es devolver una palabra de una lista, cabe destacar que es muy importante que tus decisiones siempre deben estar orientadas a la petición del usuario  y a su contexto, este es el contexto en tiempo real de este chat, son las conversaciones que hemos tenido: '{context}', según este mensaje importante*{content}* responde únicamente un elemento de esta lista '{opciones}',  es muy importante que tu respuesta solo y únicamente sea un elemento de esa lista sin comillas ya que de lo contrario romperás el programa, por favor solo devuelve un elemento, sin explicaciones ni resúmenes ni nada distinto a lo especifico que te estoy pidiendo."
+    opciones = [("text", "audio"),("agronomia","medicina","derecho")]
+    pront = f"Compórtate como una analizadora de contexto cuya función es devolver importante*dos de palabras de unas tuplas*, cabe destacar que es muy importante que tus decisiones siempre deben estar orientadas a la petición del usuario y a su contexto, este es el contexto en tiempo real de este chat, son las conversaciones que hemos tenido: '{context}', según este mensaje importante*{content}* responde únicamente con dos elementos de esta lista, uno de cada tupla '{opciones}',  es muy importante que tu respuesta solo y únicamente sean de dos elementos de esa lista comenzando por el tipo de respuesta yu luego la escuela en este formato por ejemplo tipo de 'respuesta,escuela o carrera'palabras juntas, separadas unicamente por una coma, sin espacios ni comillas, ya que de lo contrario romperás el programa, por favor solo devuelve dos elementos, sin explicaciones ni resúmenes ni nada distinto a lo especifico que te estoy pidiendo."
+    print(pront)
     while(True):
             try:
                 respuesta = modelo.generate_content(pront)
                 respuesta = respuesta.text
-                print(f"\nForma de respuesta: {respuesta}\n")
-                if respuesta in opciones:
+                respuesta.replace(" ","").replace("''","")
+                respuesta = respuesta.split(",")
+                if (respuesta[0] in opciones[0]) and (respuesta[1] in opciones[1]):
                     return respuesta
                 else:
-                    time.sleep(2)
+                    time.sleep(3)
             except Exception as e:
                 print("Error al definifir el tipo de respuestas")
                 print(f"Exeption: {e}")
-
 def ia_interaction(mode=2 , content="", context_chat="", personalidad="", response_types="", callback_action="", part = ""):
 
     # Usamos el modelo generativo de la IA

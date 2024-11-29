@@ -87,8 +87,9 @@ CREATE TABLE faculties (
 CREATE TABLE schools (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     school_name VARCHAR(50),
-    faculty INT (11),
-    CONSTRAINT fk_school_faculty FOREIGN KEY (id) REFERENCES faculties(id)
+    faculty_id INT (11),
+    information VARCHAR(50),
+    CONSTRAINT fk_school_faculty FOREIGN KEY (faculty_id) REFERENCES faculties(id)
 );
 
 CREATE TABLE coordinations (
@@ -105,3 +106,76 @@ CREATE TABLE coordinations (
 
 INSERT INTO `users` (`id`, `telegram_name`, `full_name`, `names`, `last_names`,`phone_number`, `ci`, `school`, `birthdate`, `day_week`, `gender`, `rol`) VALUES
 (1, '@Justic-IA', 'Justicia', NULL, NULL, NULL, NULL, NULL, '2024-07-07', 'Miércoles', 'w', 'Master');
+
+INSERT INTO faculties (faculty_name, information)
+VALUES
+    ('Agronomía', ''),
+    ('Veterinaria', ''),
+    ('Ciencias Jurídicas y Políticas', ''),
+    ('Odontología', ''),
+    ('Experimental de Ciencias', ''),
+    ('Medicina', ''),
+    ('Humanidades y Educación', ''),
+    ('Ciencias Económicas y Sociales', ''),
+    ('Arquitectura y Diseño', ''),
+    ('Ingeniería', ''),
+    ('Experimental de arte', '');
+
+INSERT INTO schools (school_name, faculty_id)
+VALUES
+    ('Agronomía', 1),
+    ('Veterinaria', 2),
+    ('Derecho', 3),
+    ('Trabajo Social', 3),
+    ('Ciencia Política', 3),
+    ('Odontología', 4),
+    ('Antropología', 5),
+    ('Biología', 5),
+    ('Computación', 5),
+    ('Física', 5),
+    ('Matemática', 5),
+    ('Química', 5),
+    ('Medicina', 6),
+    ('Enfermería', 6),
+    ('Nutrición y dietética', 6),
+    ('Bioanálisis', 6),
+    ('Bibliotecología y Archivología', 7),
+    ('Ciencia y Tecnología de la Educación', 7),
+    ('Educación Integral', 7),
+    ('Educación Biología', 7),
+    ('Educación Física, Deporte y Recreación', 7),
+    ('Educación Idiomas Modernos', 7),
+    ('Educación Ciencias Sociales', 7),
+    ('Educación Inicial', 7),
+    ('Educación Matemática y Física', 7),
+    ('Educación Orientación', 7),
+    ('Educación Química', 7),
+    ('Filosofía', 7),
+    ('Filosofía Plan Especial para Egresados', 7),
+    ('Letras', 7),
+    ('Com. Soc. Periodismo Audiovisual', 7),
+    ('Com. Soc. Periodismo Impreso', 7),
+    ('Com. Publicidad y Relaciones Públicas', 7),
+    ('Administración', 8),
+    ('Contaduría', 8),
+    ('Economía', 8),
+    ('Sociología', 8),
+    ('Arquitectura', 9),
+    ('Diseño Gráfico', 9),
+    ('Ingeniería Civil', 10),
+    ('Ingeniería Eléctrica', 10),
+    ('Ingeniería Geodésica', 10),
+    ('Ingeniería Industrial', 10),
+    ('Ingeniería Mecánica', 10),
+    ('Ingeniería Petróleo', 10),
+    ('Ingeniería Química', 10),
+    ('Música Ejecución Instrumental', 11),
+    ('Artes Escénicas', 11),
+    ('Artes Plásticas', 11),
+    ('Artes Escénicas Artes Audiovisuales', 11),
+    ('Artes Escénicas Danza', 11),
+    ('Artes Escénicas Teatro', 11),
+    ('Artes Plásticas Dibujo', 11),
+    ('Artes Plásticas Escultura', 11),
+    ('Artes Plásticas Grabado', 11),
+    ('Artes Plásticas Pintura', 11);
