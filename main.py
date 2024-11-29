@@ -1,5 +1,5 @@
-from telegram import Update# Librería para manejar actualizaciones de Telegram
-from telegram.ext import ApplicationBuilder,CommandHandler,ContextTypes,MessageHandler,filters
+from telegram import Update, InlineKeyboardButton,InlineKeyboardMarkup # Librería para manejar actualizaciones de Telegram
+from telegram.ext import ApplicationBuilder,CommandHandler,ContextTypes,MessageHandler,filters, CallbackContext,CallbackQueryHandler
 from dotenv import load_dotenv  # Librería para cargar variables de entorno
 import os  # Librería para manejar variables de entorno
 import google.generativeai as genai  # Importamos Gemini Pro
@@ -11,6 +11,7 @@ import subprocess
 import whisper
 import random
 from gtts import gTTS
+import PyPDF2
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
@@ -21,7 +22,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     response = main_process(update, context, 1)[0]
     await escribir_con_retraso(update, context, response)
 
-def main_process(update: Update, context: ContextTypes.DEFAULT_TYPE, mode):
+def main_process(update: Update, context: ContextTypes.DEFAULT_TYPE, mode, path: None):
     """
     - La función principal de respuesta es el centro principal que comunica las funciones de respuesta. 
     - The main response function is the main center that communicates the response functions.
@@ -42,6 +43,12 @@ def main_process(update: Update, context: ContextTypes.DEFAULT_TYPE, mode):
     elif mode == 3:
         text = download_and_read_audio(update,context)
         user_message_type = "audio"
+    elif mode == 4:
+        content = read_pdf(path)
+        text = f"""Este es el contenido de este documento “{content}” necesito que respondas la siguiente pregunta o obedezcas la siguiente instrucción unicamente basándote que te acabo de mencionar.
+        Instrucción: Elabora una introducción con aproximadamente el 20%  de caracteres que tenga el documento, debe ser clara, redactada con máxima calidad discursiva."""
+
+        user_message_type = "text"
     else:
         text = "Sistema: Enviando una nota de Voz..."
         user_message_type = "Notification"
@@ -55,11 +62,11 @@ def main_process(update: Update, context: ContextTypes.DEFAULT_TYPE, mode):
                 response = ia_interaction(1, text, context_chat, JUSTICIA, response_types)
             else:
                 response = ia_interaction(2, text, context_chat, JUSTICIA, response_types)
-            chat_history_register_to_towa(user,user_id, response, date, response_types)
+                chat_history_register_to_justicia(user,user_id, response, date, response_types)
             break
         except:
             time.sleep(3) 
-    return response, response_types
+    return response
 
 # Funcion para manejar el mensaje del usuario y la respuesta del bot al mismo tiempo
 async def handle_message_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -119,14 +126,48 @@ async def handle_message_voice(update: Update, context: ContextTypes.DEFAULT_TYP
             pass
 
 async def handle_message_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """if update.message.document:
+    global path 
+    #------------------------------------------ Variables Principales ------------------------------------------#
+    user = update.effective_user.name
+    user_id = update.effective_user.id
+    user_full_name = update.effective_user.full_name
+    print(f"Usuario: {user}\nNombre completo: {user_full_name}\n")
+
+    if update.message.document:
             if update.message.document.mime_type == "application/pdf":
                 file_name = update.message.document.file_name
                 new_file = await update.message.effective_attachment.get_file()
-                await new_file.download_to_drive(file_name)
+                Nombre_de_carpeta = f"Usuario_{user_id}"
+                path =  f"./Historial_Chats/{Nombre_de_carpeta}/{file_name}"
+                await new_file.download_to_drive(path)
+                print(file_name)
+                print(path)
+                await response_to_document_pk(update, context, file_name)           
             else:
-                await update.message.reply_text("Formato no compatible, únicamente se acepta PDF")"""
+                await update.message.reply_text("Formato no compatible, únicamente se acepta PDF")
     pass
+
+async def response_to_document_pk(update: Update, context: ContextTypes.DEFAULT_TYPE, file_name: None): 
+    keyboard =InlineKeyboardMarkup([
+                [InlineKeyboardButton(text=f"Elaborar una Introducción", callback_data="intro")], #callback_data es el valor que se envia al bot 
+                [InlineKeyboardButton(text="Elaborar una Conclusión", callback_data='conclu')],
+                [InlineKeyboardButton(text="Ayuda 🆘", callback_data='help')],
+                [InlineKeyboardButton(text="Salir de ChatPDF", callback_data='close')],
+            ]) 
+    await update.message.reply_text(
+        f"Bienvenido a ChatPDF.\n\nPDF: {file_name} 📁\n\nPregunta lo que quieras." 
+        ,reply_markup=keyboard)
+
+async def rtd_cb_pk(update: Update, context: CallbackContext, path): 
+    """
+    Obedece al Callback de la fusion de response_to_document_pk
+    """
+    data = update.callback_query.data
+    if data == "intro":
+        #------------------------------------------ Funciones de respuesta ------------------------------------------#
+        response = main_process(update, context, 4, path)[0]
+        await escribir_con_retraso(update, context, response)
+
 
 def define_response_types(text, context):
     """- Esta funcion busca definir la forma en como te puede responder
@@ -171,11 +212,6 @@ def ia_interaction(mode, text, context_chat, personalidad, response_types):
             except Exception as e:
                 print(f"Exeption: {e}")
 
-# funcion de error
-""" async def error(update: Update, context: ContextTypes):
-    print(context.error)
-    await update.callback_query.message.reply_text("Ocurrio un error") """
-
 def chat_history_register_to_user(user,user_full_name, user_id, text, date, user_message_type):
     """- Esta función busca guardar las conversaciones individuales de cada usuario y utilizarla
     para generar de un contexto del chat y así volver más eficientes la interacción con la IA.
@@ -200,22 +236,19 @@ def chat_history_register_to_user(user,user_full_name, user_id, text, date, user
     archivo_de_texto.close()
     return context_chat, new_context
 
-
-def chat_history_register_to_towa(user, user_id, response, date, response_type):
+def chat_history_register_to_justicia(user, user_id, response, date, response_type):
     Nombre_de_carpeta = f"Usuario_{user_id}"
     nombre_del_archivo = f"./Historial_Chats/{Nombre_de_carpeta}/{user}.txt"
     archivo_de_texto = open(nombre_del_archivo,"a")
-    archivo_de_texto.write(f"Towa: {response} ||| {date} Enviaste en formato: {response_type}\n")
-    print(f"Towa: {response} {date}\n")
+    archivo_de_texto.write(f"justicia: {response} ||| {date} Enviaste en formato: {response_type}\n")
+    print(f"justicia: {response} {date}\n")
     archivo_de_texto.close()
-
 
 async def escribir_con_retraso(update: Update, context: ContextTypes.DEFAULT_TYPE, respuesta):
     """Simula que el bot está escribiendo antes de enviar la respuesta."""
     await update.message.chat.send_action(ChatAction.TYPING)
     time.sleep(3)  # Ajusta el tiempo de espera según la longitud de la respuesta
     await update.message.reply_text(respuesta)
-
 
 async def audio_con_retraso(update: Update, context: ContextTypes.DEFAULT_TYPE, respuesta):
     """Simula que el bot está escribiendo antes de enviar la respuesta."""
@@ -240,7 +273,6 @@ def stt_whisper(input_file = "NOta.wav", model = "base", idioma ="es"):
         print("Excetion: ", r)
     finally:
         print(f' Tiempo de stt: {time.time()-inicio} segundos')
-
 
 def ogg_to_wav(input_file = "Nota.ogg", onput_file = "Nota.wav"):
     inicio = time.time()
@@ -278,17 +310,14 @@ def main():
     print("Iniciando bot...")
     application = (
         ApplicationBuilder().token(load_variables()[0]).build()
-    )  # inicializar el bot
-    # agregar comandos
+    ) 
     application.add_handler(CommandHandler("start", start))
-    # agregar funciones
     application.add_handler(MessageHandler(filters.TEXT, handle_message_text))
-    application.add_handler(MessageHandler(filters.VOICE, handle_message_voice))   # funcion de respuestas
-    # agregar error
-    # application.add_error_handler(error)
-    # iniciar
+    application.add_handler(MessageHandler(filters.VOICE, handle_message_voice))
+    application.add_handler(MessageHandler(filters.ATTACHMENT, handle_message_document))
+    application.add_handler(CallbackQueryHandler(response_to_document_pk))
+
     print("Bot iniciado")
-    # poll_interval=1,timeout=10 #tiempo de espera para la respuesta del bot en segundos
     application.run_polling(poll_interval=5, timeout=5)
     print(f' Tiempo: {time.time()-inicio} segundos')
 
@@ -303,6 +332,14 @@ def code_read():
     except Exception as e:
         print(f"Ocurrió un error al leer el archivo: {e}")
 
+def read_pdf(archivo):
+    with open(archivo, 'rb') as f:
+        pdf_reader = PyPDF2.PdfReader(f)
+        texto= ""
+        for pagina in pdf_reader.pages:
+            print(pdf_reader.pages)
+            texto+= pagina.extract_text()
+        return  texto
 
 if __name__ == "__main__":  # Iniciar el bot
     main()
